@@ -4,4 +4,4 @@
 npm install
 
 # Para iniciar:
-node server.js
+npm start
