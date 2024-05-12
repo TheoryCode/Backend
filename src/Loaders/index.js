@@ -1,6 +1,12 @@
-const app  = require("./App");
-const Loaders = require("./Loaders/index");
+const startDB = require("./mongodb");
 
-Loaders.start();
+class Loaders{
+    start(){
+        startDB();
+    }
+}
 
-app.listen(3000, () => console.log("Servidor Rodando"))
+module.exports = new Loaders();
+
+
+

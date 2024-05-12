@@ -1,9 +1,6 @@
-const startDB = require("./mongodb");
+const app  = require("./App");
+const Loaders = require("./Loaders/index");
 
-class Loaders{
-    start(){
-        startDB();
-    }
-}
+Loaders.start();
 
-module.exports = new Loaders();
+app.listen(3000, () => console.log("Servidor Rodando"))
