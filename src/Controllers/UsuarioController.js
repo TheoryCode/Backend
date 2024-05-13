@@ -9,8 +9,7 @@ class UsuarioController {
   async read (req, res) {
     const usuarios = await UsuarioModel.find();
 
-    return res.status(200).json(usuarios);
-        
+    return res.status(200).json(usuarios);     
     }
    async update (req, res) {
         const{ id } = req.params;
@@ -20,7 +19,7 @@ class UsuarioController {
         
     }
     async delete (req, res) {
-        const { id } = req.params
+        const { id } = req.params;
 
         await UsuarioModel.findByIdAndDelete(id);
 
