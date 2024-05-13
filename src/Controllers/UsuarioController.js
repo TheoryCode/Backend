@@ -7,7 +7,7 @@ class UsuarioController {
  return res.status(200).json(usuario);
     }
   async read (req, res) {
-    const usuario = await UsuarioModel.find();
+    const usuarios = await UsuarioModel.find();
 
     return res.status(200).json(usuarios);
         

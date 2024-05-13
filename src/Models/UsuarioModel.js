@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 
 const UsuarioSchema = new Schema ({
     
-    Nome : String,
-    Cargo : String,
-    Email : String,
-    Senha : String,
-    Nivel : Boolean
+    nome: String,
+    cargo : String,
+    email : String,
+    senha : String,
+    nivel : Boolean
 })
 
 const UsuarioModel = mongoose.model('usuarios', UsuarioSchema);
