@@ -7,16 +7,16 @@ class SessoesController {
  return res.status(200).json(Sessoes);
     }
   async read (req, res) {
-    const sessoes = await SessoesModel.find();
+    const sessoes = await SessoesModel.find().populate('id_usuario', '-senha');
 
     return res.status(200).json(sessoes);
         
     }
-    update (req, res) {
-        
+
+ update (req, res) {   
     }
     async delete (req, res) {
-        const { id } = req.params
+        const { id } = req.params;
 
         await SessoesModel.findByIdAndDelete(id);
 

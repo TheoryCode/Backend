@@ -10,6 +10,8 @@ const rotas = Router();
 
     rotas.delete('/usuarios/:id', UsuarioController.delete);
 
+    rotas.put('/usuarios/:id', UsuarioController.update)
+
 
     //Sessoes
     rotas.post('/sessoes', SessoesController.create);
