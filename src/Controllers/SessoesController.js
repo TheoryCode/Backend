@@ -15,6 +15,7 @@ class SessoesController {
 
  update (req, res) {   
     }
+    
     async delete (req, res) {
         const { id } = req.params;
 

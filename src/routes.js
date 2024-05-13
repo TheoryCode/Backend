@@ -1,8 +1,10 @@
 const { Router } = require("express");
 const UsuarioController = require("./Controllers/UsuarioController");
 const SessoesController = require("./Controllers/SessoesController");
-const UsuarioValidator = require("./Validators/UsuarioValidator")
-const rotas = Router();;
+const UsuarioValidator = require("./Validators/UsuarioValidator");
+const SessoesValidator = require("./Validators/SessoesValidator");
+
+const rotas = Router();
 
 //Usuarios
     rotas.post('/usuarios', UsuarioValidator.create, UsuarioController.create);
@@ -15,11 +17,11 @@ const rotas = Router();;
 
 
     //Sessoes
-    rotas.post('/sessoes', SessoesController.create);
+    rotas.post('/sessoes', SessoesValidator.create, SessoesController.create);
 
     rotas.get('/sessoes', SessoesController.read);
 
-    rotas.delete('/sessoes/:id', SessoesController.delete);
+    rotas.delete('/sessoes/:id', SessoesValidator.destroy, SessoesController.delete);
 
 
     module.exports = rotas;
