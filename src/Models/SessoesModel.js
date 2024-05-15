@@ -6,7 +6,12 @@ const SessoesSchema = new Schema({
     id_usuario: {
         type: Schema.Types.ObjectId,
         ref:'usuarios'
-    }
+    },
+
+    id_projeto: {
+        type: Schema.Types.ObjectId,
+        ref: 'projetos'
+    }, 
     
 },{
     timestamps: true

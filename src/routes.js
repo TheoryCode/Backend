@@ -23,5 +23,7 @@ const rotas = Router();
 
     rotas.delete('/sessoes/:id', SessoesValidator.destroy, SessoesController.delete);
 
+    rotas.put('/sessoes/:id', SessoesValidator.update, SessoesController.update)
+
 
     module.exports = rotas;

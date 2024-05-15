@@ -24,7 +24,7 @@ class SessoesController {
 
         const sessoes = await SessoesModel.findByIdAndUpdate(id, updateData, { new: true });
 
-        if (sessoes === NULL) {
+        if (!sessoes) {
             return res.status(404).json({ mensagem: "Sessão não encontrada" });
         }
 
