@@ -28,9 +28,9 @@ const rotas = Router();
 
     rotas.get('/sessoes', verificarJwt, SessoesController.read);
 
-    rotas.delete('/sessoes/:id', verificarJwt, SessoesValidator.destroy, SessoesController.delete);
+    rotas.delete('/sessoes/:id_usuario', verificarJwt, SessoesValidator.destroy, SessoesController.delete);
 
-    rotas.put('/sessoes/:id', verificarJwt, SessoesValidator.update, SessoesController.update);
+    //rotas.put('/sessoes/:id', verificarJwt, SessoesValidator.update, SessoesController.update);
 
     //Projeto
     rotas.post('/projeto', ProjetoValidator.create, ProjetoController.create);
