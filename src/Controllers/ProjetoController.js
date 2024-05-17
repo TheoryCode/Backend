@@ -8,7 +8,7 @@ class ProjetoController {
             return res.status(200).json(Projeto);
 
         } catch (error) {
-            res.status(500).json({message: "Deu ruim aqui no create!!", error: error.message});
+            res.status(500).json({message: "/ProjetoController: Deu ruim aqui no create!!", error: error.message});
 
         }
     }
@@ -19,7 +19,7 @@ class ProjetoController {
           const Projetos = await ProjetoModel.find();
           return res.status(200).json(Projetos); 
     } catch (error) {
-        res.status(500).json({message: "Deu ruim aqui no read!!", error: error.message});
+        res.status(500).json({message: "/ProjetoController: Deu ruim aqui no read!!", error: error.message});
 
     }
        
@@ -34,7 +34,7 @@ class ProjetoController {
 
         return res.status(200).json(Projeto);
     } catch (error) {
-        res.status(500).json({message: "Deu ruim aqui no update!!", error: error.message});
+        res.status(500).json({message: "/ProjetoController: Deu ruim aqui no update!!", error: error.message});
 
     }
        
@@ -48,7 +48,7 @@ class ProjetoController {
 
         return res.status(200).json({"mensagem":"Projeto deletado com sucesso!"});
         } catch (error) {
-            res.status(500).json({message: "Deu ruim aqui no read!!", error: error.message});
+            res.status(500).json({message: "/ProjetoController: Deu ruim aqui no delete!!", error: error.message});
     
         }
            
