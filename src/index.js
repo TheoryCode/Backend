@@ -7,4 +7,4 @@ Loaders.start();
 
 const PORT = process.env.PORT || 8000;
 
-app.listen(8000, () => console.log("Servidor Rodando"))
+app.listen(PORT, () => console.log("Servidor Rodando"))

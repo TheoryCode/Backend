@@ -2,10 +2,12 @@ const { Router } = require("express");
 const UsuarioController = require("./Controllers/UsuarioController");
 const SessoesController = require("./Controllers/SessoesController");
 const ProjetoController = require("./Controllers/ProjetoController");
+const AuthController = require("./Controllers/AuthController");
 
 const UsuarioValidator = require("./Validators/UsuarioValidator");
 const SessoesValidator = require("./Validators/SessoesValidator");
 const ProjetoValidator = require("./Validators/ProjetoValidator");
+const AuthValidator = require("./Validators/AuthValidator");
 
 const rotas = Router();
 
@@ -28,7 +30,7 @@ const rotas = Router();
 
     rotas.put('/sessoes/:id', SessoesValidator.update, SessoesController.update);
 
-
+    //Projeto
     rotas.post('/projeto', ProjetoValidator.create, ProjetoController.create);
 
     rotas.get('/projeto', ProjetoController.read);
@@ -36,6 +38,9 @@ const rotas = Router();
     rotas.delete('/projeto/:id', ProjetoValidator.destroy, ProjetoController.delete);
 
     rotas.put('/projeto/:id', ProjetoValidator.update, ProjetoController.update);
+
+    //Auth
+    rotas.post('/login', AuthValidator.login, AuthController.login);
 
 
     module.exports = rotas;
