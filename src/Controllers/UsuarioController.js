@@ -10,6 +10,8 @@ class UsuarioController {
             return res.status(200).json(usuarioMenosSenha);
 
 
+            
+
         } catch (error) {
             res.status(500).json({message: "/UsuarioController: Deu ruim aqui no create!!", error: error.message});
 
