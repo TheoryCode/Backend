@@ -5,25 +5,28 @@ class UsuarioController {
         try{
             const usuario = await UsuarioModel.create(req.body);
 
-            return res.status(200).json(usuario);
+            const { senha , ...usuarioMenosSenha } = usuario.toObject()
+
+            return res.status(200).json(usuarioMenosSenha);
+
 
         } catch (error) {
-            res.status(500).json({message: "Deu ruim aqui no create!!", error: error.message});
+            res.status(500).json({message: "/UsuarioController: Deu ruim aqui no create!!", error: error.message});
 
         }
- 
-
- 
     }
 
 
   async read (req, res) {
     try {
- 
           const usuarios = await UsuarioModel.find();
+
           return res.status(200).json(usuarios); 
+
+
     } catch (error) {
-        res.status(500).json({message: "Deu ruim aqui no read!!", error: error.message});
+        res.status(500).json({message: "/UsuarioController: Deu ruim aqui no read!!", error: error.message});
+  
 
     }
        
@@ -31,14 +34,20 @@ class UsuarioController {
 
    async update (req, res) {
     try {
+        const{ id } = req.params;
+        const usuarioEncontrado = await UsuarioModel.findById(id);
 
-
-         const{ id } = req.params;
-        const usuario = await UsuarioModel.findByIdAndUpdate(id, req.body, {new: true})
-
+        if(!usuarioEncontrado){
+            return res.status(404).json({message: "Usuário não encontrado"})
+        }
+        
+        const usuario = await usuarioEncontrado.set(req.body).save();
+        
+        //const usuario = await UsuarioModel.findByIdAndUpdate(id, req.body, {new: true})
         return res.status(200).json(usuario);
+
     } catch (error) {
-        res.status(500).json({message: "Deu ruim aqui no update!!", error: error.message});
+        res.status(500).json({message: "/UsuarioController: Deu ruim aqui no update!!", error: error.message});
 
     }
        
@@ -47,12 +56,18 @@ class UsuarioController {
     async delete (req, res) {
         try {
              const { id } = req.params;
+             const usuarioEncontrado = await UsuarioModel.findById(id);
 
-        await UsuarioModel.findByIdAndDelete(id);
+        if(!usuarioEncontrado){
+            return res.status(404).json({message: "Usuário não encontrado"});
+        }
 
-        return res.status(200).json({"mensagem":"usuario deletado com sucesso!"});
+        await usuarioEncontrado.deleteOne();
+
+        return res.status(200).json({message:"usuario deletado com sucesso!"});
+
         } catch (error) {
-            res.status(500).json({message: "Deu ruim aqui no read!!", error: error.message});
+            res.status(500).json({message: "/UsuarioController: Deu ruim aqui no delete!!", error: error.message});
     
         }
            
