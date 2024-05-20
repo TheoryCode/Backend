@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose")
 
 function verificarJwt(req, res, next) {
     const authHeader = req.headers.authorization || req.headers.Authorization;
@@ -21,10 +22,8 @@ function verificarJwt(req, res, next) {
         if (err){
             return res.status(403).json({message: "JWT token inválido"})
         }
-        req.usuarioId = usuario.id;
-        
+        req.usuarioId = usuario._id;
         next();
-    });      
+    });
 }
-
 module.exports = verificarJwt;

@@ -10,6 +10,7 @@ const ProjetoValidator = require("./Validators/ProjetoValidator");
 const AuthValidator = require("./Validators/AuthValidator");
 
 const verificarJwt = require("./Middlewares/VerificarJWT");
+const verificarUsuario = require("./Middlewares/VerificarUsuario");
 
 const rotas = Router();
 
@@ -18,17 +19,17 @@ const rotas = Router();
 
     rotas.get('/usuarios', verificarJwt, UsuarioController.read);
 
-    rotas.delete('/usuarios/:id', verificarJwt, UsuarioValidator.destroy, UsuarioController.delete);
+    rotas.delete('/usuarios/:id', verificarJwt, verificarUsuario,  UsuarioValidator.destroy, UsuarioController.delete);
 
-    rotas.put('/usuarios/:id', verificarJwt, UsuarioValidator.update, UsuarioController.update);
+    rotas.put('/usuarios/:id',verificarJwt, verificarUsuario, UsuarioValidator.update, UsuarioController.update);
 
 
     //Sessoes
-    rotas.post('/sessoes', verificarJwt, SessoesValidator.create, SessoesController.create);
+    rotas.post('/sessoes', verificarJwt, verificarUsuario, SessoesValidator.create, SessoesController.create);
 
     rotas.get('/sessoes', verificarJwt, SessoesController.read);
 
-    rotas.delete('/sessoes/:id_usuario', verificarJwt, SessoesValidator.destroy, SessoesController.delete);
+    rotas.delete('/sessoes/:id_usuario',verificarJwt, verificarUsuario, SessoesValidator.destroy, SessoesController.delete);
 
     //rotas.put('/sessoes/:id', verificarJwt, SessoesValidator.update, SessoesController.update);
 

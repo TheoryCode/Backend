@@ -27,15 +27,17 @@ class AuthController {
                 return res.status(403).json({message: "E-mail ou Senha inválidos"});
             }
 
-            const {senha: hashSenha, ...usuario } = usuarioConfirmado.toObject();
+            const {senha: hashedSenha, ...usuario } = usuarioConfirmado.toObject();
 
-            const token = jwt.sign(
-            { usuario }, 
-            process.env.JWT_SECRET, 
-            { expiresIn: process.env.JWT_EXPIRE_IN }
-        );
+            const token = jwt.sign( usuario, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRE_IN, });
 
-            //console.log({ usuarioConfirmado, ehCorespondente });
+            req.usuarioId = usuario._id
+           // console.log(req.usuarioId);
+            
+            
+            // const _id = usuarioConfirmado.findOne(_id);
+            // console.log( _id );
+            // module.exports = _id;
 
             res.status(200).json({ token });
 
