@@ -2,7 +2,7 @@ const UsuarioModel = require("../Models/UsuarioModel");
 
 class UsuarioController {
     async create (req, res) {
-        try{
+        try{  
             const usuario = await UsuarioModel.create(req.body);
 
             const { senha, ...usuarioMenosSenha } = usuario.toObject();
