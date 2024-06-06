@@ -23,7 +23,7 @@ class AuthController {
 
             const ehCorespondente = await bcrypt.compare( senha, usuarioConfirmado.senha );
 
-            if(!ehCorespondente){
+            if(!(senha === usuarioConfirmado.senha)){
                 return res.status(403).json({message: "E-mail ou Senha inválidos"});
             }
 
