@@ -15,35 +15,61 @@ const verificarUsuario = require("./Middlewares/VerificarUsuario");
 const rotas = Router();
 
 //Usuarios
-    rotas.post('/usuarios', UsuarioValidator.create, UsuarioController.create);
+rotas.post("/usuarios", UsuarioValidator.create, UsuarioController.create);
 
-    rotas.get('/usuarios', verificarJwt, UsuarioController.read);
+rotas.get("/usuarios", UsuarioController.read);
 
-    rotas.delete('/usuarios/:id', verificarJwt, verificarUsuario,  UsuarioValidator.destroy, UsuarioController.delete);
+rotas.delete(
+  "/usuarios/:id",
+  verificarJwt,
+  verificarUsuario,
+  UsuarioValidator.destroy,
+  UsuarioController.delete
+);
 
-    rotas.put('/usuarios/:id',verificarJwt, verificarUsuario, UsuarioValidator.update, UsuarioController.update);
+rotas.put(
+  "/usuarios/:id",
+  verificarJwt,
+  verificarUsuario,
+  UsuarioValidator.update,
+  UsuarioController.update
+);
 
+//Sessoes
+rotas.post(
+  "/sessoes",
+  verificarJwt,
+  verificarUsuario,
+  SessoesValidator.create,
+  SessoesController.create
+);
 
-    //Sessoes
-    rotas.post('/sessoes', verificarJwt, verificarUsuario, SessoesValidator.create, SessoesController.create);
+rotas.get("/sessoes", verificarJwt, SessoesController.read);
 
-    rotas.get('/sessoes', verificarJwt, SessoesController.read);
+rotas.delete(
+  "/sessoes/:id_usuario",
+  verificarJwt,
+  verificarUsuario,
+  SessoesValidator.destroy,
+  SessoesController.delete
+);
 
-    rotas.delete('/sessoes/:id_usuario',verificarJwt, verificarUsuario, SessoesValidator.destroy, SessoesController.delete);
+//rotas.put('/sessoes/:id', verificarJwt, SessoesValidator.update, SessoesController.update);
 
-    //rotas.put('/sessoes/:id', verificarJwt, SessoesValidator.update, SessoesController.update);
+//Projeto
+rotas.post("/projeto", ProjetoValidator.create, ProjetoController.create);
 
-    //Projeto
-    rotas.post('/projeto', ProjetoValidator.create, ProjetoController.create);
+rotas.get("/projeto", ProjetoController.read);
 
-    rotas.get('/projeto', ProjetoController.read);
+rotas.delete(
+  "/projeto/:id",
+  ProjetoValidator.destroy,
+  ProjetoController.delete
+);
 
-    rotas.delete('/projeto/:id', ProjetoValidator.destroy, ProjetoController.delete);
+rotas.put("/projeto/:id", ProjetoValidator.update, ProjetoController.update);
 
-    rotas.put('/projeto/:id', ProjetoValidator.update, ProjetoController.update);
+//Auth
+rotas.post("/login", AuthValidator.login, AuthController.login);
 
-    //Auth
-    rotas.post('/login', AuthValidator.login, AuthController.login);
-
-
-    module.exports = rotas;
+module.exports = rotas;
