@@ -12,7 +12,7 @@ const SessoesSchema = new Schema({
 
     id_projeto: {
         type: Schema.Types.ObjectId,
-        ref: 'projetos'
+        ref: 'projeto'
     }, 
     
 },{

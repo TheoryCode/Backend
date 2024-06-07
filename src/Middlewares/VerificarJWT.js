@@ -15,10 +15,10 @@ function verificarJwt(req, res, next) {
     }
 
     if(!token){
-        return res.status(404).json({message: "JWT token não encontrado"})
+        return res.status(403).json({message: "JWT token não encontrado"})
     }
 
-    jwt.verify(token, process.env.JWT_SECRET, (err, usuario) => {
+    jwt.verify(token, process.env.JWT_SECRET, (usuario, err) => {
         if (err){
             return res.status(403).json({message: "JWT token inválido"})
         }
