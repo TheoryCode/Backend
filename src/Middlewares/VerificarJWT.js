@@ -5,22 +5,22 @@ function verificarJwt(req, res, next) {
     const authHeader = req.headers.authorization || req.headers.Authorization;
 
     if(!authHeader){
-        return res.status(403).json({message: "Header de Auth não encontrado"})
+        return res.status(401).json({message: "Header de Auth não encontrado"})
     }
     
     const [bearer, token] = authHeader.split(" ");
 
     if(!/^Bearer$/.test(bearer)){
-        return res.status(403).json({message: "Header de Auth mal formatado"})
+        return res.status(402).json({message: "Header de Auth mal formatado"})
     }
 
     if(!token){
-        return res.status(404).json({message: "JWT token não encontrado"})
+        return res.status(403).json({message: "JWT token não encontrado"})
     }
 
-    jwt.verify(token, process.env.JWT_SECRET, (err, usuario) => {
+    jwt.verify(token, process.env.JWT_SECRET, (usuario, err) => {
         if (err){
-            return res.status(403).json({message: "JWT token inválido"})
+            return res.status(404).json({message: "JWT token inválido"})
         }
         req.usuarioId = usuario._id;
         next();
