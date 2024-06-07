@@ -19,13 +19,7 @@ rotas.post("/usuarios", UsuarioValidator.create, UsuarioController.create);
 
 rotas.get("/usuarios", UsuarioController.read);
 
-rotas.delete(
-  "/usuarios/:id",
-  verificarJwt,
-  verificarUsuario,
-  UsuarioValidator.destroy,
-  UsuarioController.delete
-);
+    rotas.delete('/usuarios/:id', verificarJwt, verificarUsuario, UsuarioValidator.destroy, UsuarioController.delete);
 
 rotas.put(
   "/usuarios/:id",
@@ -73,3 +67,6 @@ rotas.put("/projeto/:id", ProjetoValidator.update, ProjetoController.update);
 rotas.post("/login", AuthValidator.login, AuthController.login);
 
 module.exports = rotas;
+
+
+    module.exports = rotas;

@@ -23,7 +23,7 @@ class SessoesController {
     
   async read(req, res){
     try {
-      const sessoes = await SessoesModel.find().populate('id_usuario', '-senha');
+      const sessoes = await SessoesModel.find().populate('id_usuario', '-senha').populate('id_projeto');
       res.status(200).json(sessoes);
     } catch (error) {
         res.status(500).json({message: "A requisição falhou", error: error.message});
